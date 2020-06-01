@@ -2,9 +2,20 @@
 # 19.01.20現在最新安定版のイメージを取得
 FROM ruby:2.5.1
 
+ENV ENTRYKIT_VERSION 0.4.0
+
 # 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
-RUN apt-get update -qq && \
-    apt-get install -y build-essential \ 
+RUN apt-get update                                                                                                                      \
+  && apt-get install                                                                                                                    \
+    openssl                                                                                                                             \
+  && wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz     \
+  && tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz                                                                            \
+  && rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz                                                                                   \
+  && mv entrykit /bin/entrykit                                                                                                          \
+  && chmod +x /bin/entrykit                                                                                                             \
+  && entrykit --symlink \
+  && apt-get update -qq  \
+  && apt-get install -y build-essential \ 
                        libpq-dev \        
                        nodejs           
 
