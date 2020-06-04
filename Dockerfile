@@ -4,6 +4,12 @@ FROM ruby:2.5.1
 
 ENV ENTRYKIT_VERSION 0.4.0
 
+# 作業ディレクトリの作成、設定
+RUN mkdir /app_name 
+##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
+ENV APP_ROOT /app_name 
+WORKDIR $APP_ROOT
+
 # 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
 RUN apt-get update                                                                                                                      \
   && apt-get install                                                                                                                    \
@@ -19,11 +25,7 @@ RUN apt-get update                                                              
                        libpq-dev \        
                        nodejs           
 
-# 作業ディレクトリの作成、設定
-RUN mkdir /app_name 
-##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
-ENV APP_ROOT /app_name 
-WORKDIR $APP_ROOT
+
 
 # ホスト側（ローカル）のGemfileを追加する（ローカルのGemfileは【３】で作成）
 ADD ./Gemfile $APP_ROOT/Gemfile
@@ -32,3 +34,19 @@ ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 # Gemfileのbundle install
 RUN bundle install
 ADD . $APP_ROOT
+
+ENTRYPOINT [ \
+  "prehook", "bundle install", "--", \  
+  "prehook", "bin/rspec", "--" \
+  ]
+
+#"prehook", "bundle exec rspec -b spec", "--" \
+
+#ENTRYPOINT [ \
+  # "prehook", "bundle install -j3 --path vendor/bundle", "--", \
+  # "prehook", "bundle exec rails init_db:setup", "--", \
+  # "switch", "reset=bundle exec rails init_db:reset", "--", \
+  # "prehook", "bundle exec rspec -b spec", "--", \
+  # "prehook", "ruby -v", "--", \
+  # "prehook", "node -v", "--" \
+#]
