@@ -51,3 +51,6 @@ ENTRYPOINT [ \
   # "prehook", "ruby -v", "--", \
   # "prehook", "node -v", "--" \
 #]
+
+#docker-compose run web rails db:create
+#docker-compose run web rails db:migrate
