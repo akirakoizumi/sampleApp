@@ -37,7 +37,8 @@ ADD . $APP_ROOT
 
 ENTRYPOINT [ \
   "prehook", "bundle install", "--", \  
-  "prehook", "bin/rspec", "--" \
+  "prehook", "bin/rspec", "--", \
+  "prehook", "ruby -v", "--" \
   ]
 
 #"prehook", "bundle exec rspec -b spec", "--" \
