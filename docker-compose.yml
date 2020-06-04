@@ -15,6 +15,9 @@ services:
       - .:/app_name
     ports:
       - "3000:3000"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
     links:
       - db
     #depends_on:
