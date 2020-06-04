@@ -7,10 +7,10 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     // = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application' 
+    // = javascript_pack_tag 'application' 
   body
-    /.app-title.navbar.navbar-expand-md
-    /  .navbar-brand Taskleaf
+    .app-title.navbar.navbar-expand-md
+      .navbar-brand Taskleaf
     /
     /  ul.navbar-nav.ml-auto
     /    - if current_user
@@ -20,7 +20,8 @@ html
     /      li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
     /    - else
     /      li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
-    /.container
-    /  - if flash.notice.present?
-    /    .alert.alert-success= flash.notice
-    = yield
+    .container
+      - if flash.notice.present?
+        .alert.alert-success= flash.notice
+      = yield
+    = javascript_include_tag 'application'

@@ -22,8 +22,9 @@ RUN apt-get update                                                              
   && entrykit --symlink \
   && apt-get update -qq  \
   && apt-get install -y build-essential \ 
-                       libpq-dev \        
-                       nodejs           
+                       libpq-dev \  
+  && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+  && apt-get install -y nodejs
 
 
 
