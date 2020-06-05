@@ -2,15 +2,15 @@ h1 タスクの新規登録
 .nav.justify-content-end
   = link_to  '一覧', tasks_path, class: 'nav-link' 
 
-= render partial: 'form', locals: {task: @task}
+/= render partial: 'form', locals: {task: @task}
 
 
-/- if @task.errors.present?
+- if @task.errors.present?
   ul#error_explanation
     - @task.errors.full_message.each do |message|
     li= message
 
-/= form_with model: @task, local: true, url: confirm_new_task_path do |f|
+= form_with model: @task, local: true, url: confirm_new_task_path do |f|
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control', id: 'task_name'
