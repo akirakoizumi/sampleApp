@@ -6,4 +6,4 @@ test:
   port: 3306
   host: db 
   ##hostXXX: '127.0.0.1'
-  database: sampleApp_test #database.ymlのテスト環境のデータベース名を参照
+  database: app_name_test #database.ymlのテスト環境のデータベース名を参照

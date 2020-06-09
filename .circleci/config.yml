@@ -9,14 +9,16 @@ jobs:
     - image: circleci/mysql:5.7-ram
       environment:
         MYSQL_ROOT_PASSWORD: password
-        MYSQL_DATABASE: root
+        # MYSQL_DATABASE: root
+        MYSQL_DATABASE: app_name_test
         #ここからノート
         #MYSQL_DATABASE: circleci-example-for-rails_test
         MYSQL_ALLOW_EMPTY_PASSWORD: true
         MYSQL_ROOT_HOST: '%'
         MYSQL_USER: root
-        # working_directory: ~/circleci-example-for-rails
-        working_directory: ~/sampleApp
+        MYSQL_PORT: 3306
+    # working_directory: ~/circleci-example-for-rails
+    working_directory: ~/sampleApp
     steps:
     - checkout
     - restore_cache:
