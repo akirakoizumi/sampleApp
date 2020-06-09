@@ -25,13 +25,7 @@ jobs:
     - restore_cache:
         keys:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
-        - v1-dependencies-
-    # Database setup
-    - run:
-        name: Prepare db
-        command: |         
-          bundle exec rake db:create
-          bundle exec rails db:schema:load --trace
+        - v1-dependencies-    
     - run:
         name: install dependencies
         command: |
@@ -41,12 +35,12 @@ jobs:
         paths:
         - ./vendor/bundle
         key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-    ## Database setup
-    #- run:
-    #    name: Prepare db
-    #    command: |         
-    #      bundle exec rake db:create
-    #      bundle exec rails db:schema:load --trace
+    # Database setup
+    - run:
+        name: Prepare db
+        command: |         
+          bundle exec rake db:create
+          bundle exec rails db:schema:load --trace
     # run tests!
     - run:
         name: Run rspec
