@@ -30,16 +30,22 @@ jobs:
         command: |
           gem install bundler -v 2.0.1
           bundle install --jobs=4 --retry=3 --path vendor/bundle
-    - save_cache:
-        paths:
-        - ./vendor/bundle
-        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
     # Database setup
     - run:
         name: Prepare db
         command: |         
           bundle exec rake db:create
           bundle exec rails db:schema:load --trace
+    - save_cache:
+        paths:
+        - ./vendor/bundle
+        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+    ## Database setup
+    #- run:
+    #    name: Prepare db
+    #    command: |         
+    #      bundle exec rake db:create
+    #      bundle exec rails db:schema:load --trace
     # run tests!
     - run:
         name: Run rspec
