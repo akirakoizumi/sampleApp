@@ -14,7 +14,7 @@ jobs:
         #ここからノート
         #MYSQL_DATABASE: circleci-example-for-rails_test
         MYSQL_ALLOW_EMPTY_PASSWORD: true
-        MYSQL_ROOT_HOST: db
+        MYSQL_ROOT_HOST: 'db'
         #MYSQL_ROOT_HOST: '%'
         MYSQL_USER: root
         MYSQL_PORT: 3306
@@ -26,6 +26,12 @@ jobs:
         keys:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
         - v1-dependencies-
+    # Database setup
+    - run:
+        name: Prepare db
+        command: |         
+          bundle exec rake db:create
+          bundle exec rails db:schema:load --trace
     - run:
         name: install dependencies
         command: |
@@ -35,12 +41,12 @@ jobs:
         paths:
         - ./vendor/bundle
         key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-    # Database setup
-    - run:
-        name: Prepare db
-        command: |         
-          bundle exec rake db:create
-          bundle exec rails db:schema:load --trace
+    ## Database setup
+    #- run:
+    #    name: Prepare db
+    #    command: |         
+    #      bundle exec rake db:create
+    #      bundle exec rails db:schema:load --trace
     # run tests!
     - run:
         name: Run rspec
