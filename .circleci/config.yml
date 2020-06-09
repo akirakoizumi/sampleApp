@@ -35,7 +35,8 @@ jobs:
     # Database setup
     - run:
         name: Prepare db
-        command: |
+        command: |         
+          bundle exec rake db:create
           bundle exec rails db:schema:load --trace
     # run tests!
     - run:
