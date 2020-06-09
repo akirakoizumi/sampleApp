@@ -14,7 +14,8 @@ jobs:
         #ここからノート
         #MYSQL_DATABASE: circleci-example-for-rails_test
         MYSQL_ALLOW_EMPTY_PASSWORD: true
-        MYSQL_ROOT_HOST: '%'
+        MYSQL_ROOT_HOST: db
+        #MYSQL_ROOT_HOST: '%'
         MYSQL_USER: root
         MYSQL_PORT: 3306
     # working_directory: ~/circleci-example-for-rails
