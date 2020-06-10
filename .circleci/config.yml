@@ -35,11 +35,17 @@ jobs:
         - ./vendor/bundle
         key: v1-dependencies-{{ checksum "Gemfile.lock" }}
     # Database setup
+    - run: mv ./config/database.yml.ci ./config/database.yml
+    - install_bundler
     - run:
-        name: Prepare db
-        command: |         
-          bundle exec rake db:create
-          bundle exec rails db:schema:load --trace
+        name: Testing DB migration and seed
+        command: |
+          bundle exec rails db:create db:migrate db:seed db:drop
+    #- run:
+    #    name: Prepare db
+    #    command: |         
+    #      bundle exec rake db:create
+    #      bundle exec rails db:schema:load --trace
     # run tests!
     - run:
         name: Run rspec
