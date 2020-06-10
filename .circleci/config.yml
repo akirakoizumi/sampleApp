@@ -40,7 +40,8 @@ jobs:
     - run:
         name: Testing DB migration and seed
         command: |
-          bundle exec rails db:create db:migrate db:seed db:drop
+          bundle exec rails db:create db:migrate db:seed
+    #     bundle exec rails db:create db:migrate db:seed db:drop
     #- run:
     #    name: Prepare db
     #    command: |         
