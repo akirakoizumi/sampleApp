@@ -17,7 +17,7 @@ jobs:
         MYSQL_ROOT_HOST: '127.0.0.1'
         MYSQL_USER: root
         MYSQL_PORT: 3306
-    # working_directory: ~/circleci-example-for-rails
+    
     working_directory: ~/sampleApp
     steps:
     - checkout

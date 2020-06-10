@@ -32,7 +32,14 @@ test:
   #追加分
   #host: <%= ENV['MYSQL_ROOT_HOST'] || '127.0.0.1' %>
   host: <%= ENV['MYSQL_ROOT_HOST'] || 'db' %>
-
+  #adapter: mysql2
+  #encoding: utf8
+  #pool: 5
+  #username: 'root'
+  port: 3306
+  #host: db 
+  ##hostXXX: '127.0.0.1'
+  #database: app_name_test
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
