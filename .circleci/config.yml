@@ -10,8 +10,7 @@ jobs:
       environment:
         MYSQL_DATABASE: app_name_test
         MYSQL_ROOT_PASSWORD: password
-        # MYSQL_DATABASE: root
-        
+        # MYSQL_DATABASE: root        
         #ここからノート
         MYSQL_ALLOW_EMPTY_PASSWORD: true
         MYSQL_ROOT_HOST: '127.0.0.1'
