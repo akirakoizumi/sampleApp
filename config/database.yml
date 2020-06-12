@@ -29,8 +29,6 @@ development:
 test:
   <<: *default
   database: app_name_test
-  #追加分
-  #host: <%= ENV['MYSQL_ROOT_HOST'] || '127.0.0.1' %>
   host: <%= ENV['MYSQL_ROOT_HOST'] || 'db' %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
@@ -57,7 +55,3 @@ production:
   database: app_name_production
   username: app_name
   password: <%= ENV['APP_NAME_DATABASE_PASSWORD'] %>
-
-#production:
-#    <<: *default
-#    url: <%= ENV['JAWSDB_URL']&.sub('mysql://', 'mysql2://') %>
